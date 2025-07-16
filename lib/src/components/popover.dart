@@ -267,7 +267,14 @@ class _ShadPopoverState extends State<ShadPopover> {
             },
           },
           child: Focus(
+            canRequestFocus: true,
             autofocus: true,
+            onKeyEvent: (node, event) {
+              if (event.logicalKey == LogicalKeyboardKey.enter) {
+                node.requestFocus();
+              }
+              return KeyEventResult.ignored;
+            },
             child: ShadPortal(
               portalBuilder: (_) => popover,
               visible: controller.isOpen,
