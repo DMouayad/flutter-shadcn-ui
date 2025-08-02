@@ -18,11 +18,11 @@ void main() {
     testWidgets('renders basic sidebar correctly', (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebar(
+          const ShadSidebar(
             navGroups: [
               ShadSidebarGroup(
                 items: [
-                  const ShadSidebarNavItem(title: 'Dashboard'),
+                  ShadSidebarNavItem(title: 'Dashboard'),
                 ],
               ),
             ],
@@ -38,9 +38,9 @@ void main() {
     testWidgets('renders with header and footer', (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebar(
-            header: const ShadSidebarHeader(title: 'My App'),
-            footer: const ShadSidebarFooter(
+          const ShadSidebar(
+            header: ShadSidebarHeader(title: 'My App'),
+            footer: ShadSidebarFooter(
               user: ShadSidebarUser(
                 name: 'John Doe',
                 email: 'john@example.com',
@@ -49,7 +49,7 @@ void main() {
             navGroups: [
               ShadSidebarGroup(
                 items: [
-                  const ShadSidebarNavItem(title: 'Dashboard'),
+                  ShadSidebarNavItem(title: 'Dashboard'),
                 ],
               ),
             ],
@@ -71,7 +71,6 @@ void main() {
         createTestWidget(
           const ShadSidebar(
             width: testWidth,
-            navGroups: <Widget>[],
           ),
         ),
       );
@@ -85,12 +84,12 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebar(
+          const ShadSidebar(
             isCollapsed: true,
             navGroups: [
               ShadSidebarGroup(
                 items: [
-                  const ShadSidebarNavItem(title: 'Dashboard'),
+                  ShadSidebarNavItem(title: 'Dashboard'),
                 ],
               ),
             ],
@@ -113,7 +112,6 @@ void main() {
         createTestWidget(
           ShadSidebar(
             onCollapsedChanged: (bool value) => collapsedState = value,
-            navGroups: const <Widget>[],
           ),
         ),
       );
@@ -122,26 +120,28 @@ void main() {
           tester.widget<ShadSidebar>(find.byType(ShadSidebar));
       expect(sidebarWidget.onCollapsedChanged, isNotNull);
       // Note: collapsedState would be updated by the callback when triggered
-      expect(collapsedState,
-          isNull); // Initially null since callback hasn't been called
+      expect(
+        collapsedState,
+        isNull, // Initially null since callback hasn't been called
+      );
     });
 
     testWidgets('renders multiple navigation groups',
         (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebar(
+          const ShadSidebar(
             navGroups: [
               ShadSidebarGroup(
                 label: 'Main',
                 items: [
-                  const ShadSidebarNavItem(title: 'Dashboard'),
+                  ShadSidebarNavItem(title: 'Dashboard'),
                 ],
               ),
               ShadSidebarGroup(
                 label: 'Settings',
                 items: [
-                  const ShadSidebarNavItem(title: 'Profile'),
+                  ShadSidebarNavItem(title: 'Profile'),
                 ],
               ),
             ],
@@ -160,11 +160,11 @@ void main() {
     testWidgets('renders group with label', (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebarGroup(
+          const ShadSidebarGroup(
             label: 'Navigation',
             items: [
-              const ShadSidebarNavItem(title: 'Home'),
-              const ShadSidebarNavItem(title: 'About'),
+              ShadSidebarNavItem(title: 'Home'),
+              ShadSidebarNavItem(title: 'About'),
             ],
           ),
         ),
@@ -178,9 +178,9 @@ void main() {
     testWidgets('renders group without label', (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebarGroup(
+          const ShadSidebarGroup(
             items: [
-              const ShadSidebarNavItem(title: 'Home'),
+              ShadSidebarNavItem(title: 'Home'),
             ],
           ),
         ),
@@ -192,12 +192,13 @@ void main() {
     testWidgets('renders collapsible group', (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebarGroup(
+          const ShadSidebarGroup(
             label: 'Collapsible',
             collapsible: true,
+            // ignore: avoid_redundant_argument_values
             initiallyExpanded: true,
             items: [
-              const ShadSidebarNavItem(title: 'Item 1'),
+              ShadSidebarNavItem(title: 'Item 1'),
             ],
           ),
         ),
@@ -214,12 +215,13 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
-          ShadSidebarGroup(
+          const ShadSidebarGroup(
             label: 'Collapsible',
             collapsible: true,
+            // ignore: avoid_redundant_argument_values
             initiallyExpanded: true,
             items: [
-              const ShadSidebarNavItem(title: 'Item 1'),
+              ShadSidebarNavItem(title: 'Item 1'),
             ],
           ),
         ),
@@ -233,7 +235,8 @@ void main() {
       await tester.pumpAndSettle();
 
       // After collapsing, item should not be visible (size animation to 0)
-      // Note: Due to SizeTransition, the widget might still exist but be sized to 0
+      // Note: Due to SizeTransition,
+      // the widget might still exist but be sized to 0.
     });
   });
 
@@ -267,7 +270,7 @@ void main() {
     });
 
     testWidgets('executes onTap callback', (WidgetTester tester) async {
-      bool tapped = false;
+      var tapped = false;
 
       await tester.pumpAsyncWidget(
         createTestWidget(
@@ -356,7 +359,7 @@ void main() {
     });
 
     testWidgets('executes onTap callback', (WidgetTester tester) async {
-      bool tapped = false;
+      var tapped = false;
 
       await tester.pumpAsyncWidget(
         createTestWidget(
@@ -428,7 +431,7 @@ void main() {
     });
 
     testWidgets('executes onUserTap callback', (WidgetTester tester) async {
-      bool tapped = false;
+      var tapped = false;
 
       await tester.pumpAsyncWidget(
         createTestWidget(
@@ -462,7 +465,7 @@ void main() {
     });
 
     test('creates nav item with all fields', () {
-      final icon = const Icon(Icons.dashboard);
+      const icon = Icon(Icons.dashboard);
       void onTap() {}
 
       final navItem = ShadSidebarNavItem(

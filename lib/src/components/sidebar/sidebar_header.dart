@@ -3,7 +3,7 @@ import 'package:shadcn_ui/src/theme/theme.dart';
 
 /// Sidebar header with app branding.
 ///
-/// Displays application logo, title, and optional subtitle in the sidebar header.
+/// Displays app logo, title, and optional subtitle in the sidebar header.
 /// Supports tap interactions and hover effects for navigation or actions.
 class ShadSidebarHeader extends StatefulWidget {
   /// Creates a sidebar header.
@@ -57,7 +57,7 @@ class _ShadSidebarHeaderState extends State<ShadSidebarHeader> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: _isHovered && widget.onTap != null
-                ? theme.colorScheme.accent.withOpacity(0.1)
+                ? theme.colorScheme.accent.withAlpha((0.1 * 255).round())
                 : Colors.transparent,
           ),
           child: Row(
@@ -70,7 +70,7 @@ class _ShadSidebarHeaderState extends State<ShadSidebarHeader> {
                     color: theme.colorScheme.primary,
                     borderRadius: BorderRadius.circular(6),
                   ),
-                  child: Center(child: widget.logo!),
+                  child: Center(child: widget.logo),
                 ),
                 const SizedBox(width: 8),
               ],

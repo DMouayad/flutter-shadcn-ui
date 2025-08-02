@@ -103,16 +103,14 @@ class ShadSidebar extends StatefulWidget {
   /// Use this to update the parent widget's state.
   final ValueChanged<bool>? onCollapsedChanged;
 
-  /// Background color override for the sidebar.
+  /// The background color for the sidebar.
   ///
-  /// If not provided, uses [ShadTheme.colorScheme.card] for
-  /// consistent theming with the design system.
+  /// overrides the theme default if provided.
   final Color? backgroundColor;
 
-  /// Border color override for the sidebar.
+  /// The color of the sidebar borders
   ///
-  /// If not provided, uses [ShadTheme.colorScheme.border] for
-  /// consistent theming with the design system.
+  /// overrides the theme default if provided.
   final Color? borderColor;
 
   /// Padding override for sidebar content areas.
@@ -199,7 +197,6 @@ class _ShadSidebarState extends State<ShadSidebar>
               border: Border(
                 right: BorderSide(
                   color: effectiveBorderColor,
-                  width: 1,
                 ),
               ),
             ),
@@ -262,11 +259,10 @@ class _ShadSidebarState extends State<ShadSidebar>
                           border: Border(
                             top: BorderSide(
                               color: effectiveBorderColor,
-                              width: 1,
                             ),
                           ),
                         ),
-                        child: widget.footer!,
+                        child: widget.footer,
                       ),
                   ],
                 ),

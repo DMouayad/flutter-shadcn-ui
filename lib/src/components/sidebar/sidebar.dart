@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/src/theme/theme.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 import 'package:shadcn_ui/src/utils/debug_check.dart';
 
 /// A composable sidebar component inspired by shadcn/ui.
@@ -72,14 +72,12 @@ class ShadSidebar extends StatefulWidget {
 
   /// Optional header widget displayed at the top of the sidebar.
   ///
-  /// Typically a [ShadSidebarHeader] with app logo and title,
-  /// but can be any widget for custom header content.
+  /// Typically a [ShadSidebarHeader] with app logo and title.
   final Widget? header;
 
   /// Optional footer widget displayed at the bottom of the sidebar.
   ///
-  /// Typically a [ShadSidebarFooter] with user information,
-  /// but can be any widget for custom footer content.
+  /// Typically a [ShadSidebarFooter] with user information.
   final Widget? footer;
 
   /// List of navigation groups to display in the sidebar content.
@@ -91,7 +89,8 @@ class ShadSidebar extends StatefulWidget {
   /// Width of the sidebar when expanded.
   ///
   /// If not provided, uses the theme's default width.
-  /// When collapsed, the sidebar animates to zero width and becomes completely hidden.
+  /// When collapsed, the sidebar animates to zero width
+  /// and becomes completely hidden.
   final double? width;
 
   /// Whether the sidebar is currently collapsed.
@@ -199,10 +198,12 @@ class _ShadSidebarState extends State<ShadSidebar>
     _widthAnimation = Tween<double>(
       begin: effectiveWidth,
       end: 0, // Completely hidden when collapsed
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: effectiveCurve,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: effectiveCurve,
+      ),
+    );
   }
 
   @override
@@ -245,7 +246,6 @@ class _ShadSidebarState extends State<ShadSidebar>
               border: Border(
                 right: BorderSide(
                   color: effectiveBorderColor,
-                  width: 1,
                 ),
               ),
             ),
@@ -264,11 +264,10 @@ class _ShadSidebarState extends State<ShadSidebar>
                           border: Border(
                             bottom: BorderSide(
                               color: effectiveBorderColor,
-                              width: 1,
                             ),
                           ),
                         ),
-                        child: widget.header!,
+                        child: widget.header,
                       ),
                     // Content
                     Expanded(
@@ -283,7 +282,8 @@ class _ShadSidebarState extends State<ShadSidebar>
                               widget.navGroups[i],
                               if (i < widget.navGroups.length - 1)
                                 SizedBox(
-                                    height: sidebarTheme.groupSpacing ?? 16),
+                                  height: sidebarTheme.groupSpacing ?? 16,
+                                ),
                             ],
                           ],
                         ),
@@ -296,13 +296,10 @@ class _ShadSidebarState extends State<ShadSidebar>
                         padding: effectivePadding,
                         decoration: BoxDecoration(
                           border: Border(
-                            top: BorderSide(
-                              color: effectiveBorderColor,
-                              width: 1,
-                            ),
+                            top: BorderSide(color: effectiveBorderColor),
                           ),
                         ),
-                        child: widget.footer!,
+                        child: widget.footer,
                       ),
                   ],
                 ),

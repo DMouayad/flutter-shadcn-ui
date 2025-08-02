@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/src/theme/theme.dart';
 import 'package:shadcn_ui/shadcn_ui.dart' show LucideIcons;
 import 'package:shadcn_ui/src/components/sidebar/sidebar_nav_item.dart';
+import 'package:shadcn_ui/src/theme/theme.dart';
 
 /// Individual menu item in the sidebar.
 ///
@@ -51,7 +51,7 @@ class _ShadSidebarMenuItemState extends State<ShadSidebarMenuItem> {
               SizedBox(
                 width: 16,
                 height: 16,
-                child: widget.item.icon!,
+                child: widget.item.icon,
               ),
               const SizedBox(width: 8),
             ],
@@ -68,7 +68,7 @@ class _ShadSidebarMenuItemState extends State<ShadSidebarMenuItem> {
                 ),
               ),
             ),
-            if (widget.item.items?.isNotEmpty == true)
+            if (widget.item.items?.isNotEmpty ?? false)
               Icon(
                 LucideIcons.chevronRight,
                 size: 12,
@@ -80,7 +80,7 @@ class _ShadSidebarMenuItemState extends State<ShadSidebarMenuItem> {
     );
 
     // If no sub-items, return just the button
-    if (widget.item.items?.isEmpty != false) {
+    if (widget.item.items?.isEmpty ?? true) {
       return mainButton;
     }
 
@@ -124,10 +124,12 @@ class _ShadSidebarCollapsibleMenuItemState
     _rotationAnimation = Tween<double>(
       begin: 0,
       end: 0.5,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
     _sizeAnimation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
@@ -170,12 +172,13 @@ class _ShadSidebarCollapsibleMenuItemState
               duration: const Duration(milliseconds: 200),
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(6),
                 color: widget.item.isActive
                     ? theme.colorScheme.accent
                     : _isHovered
-                        ? theme.colorScheme.accent.withOpacity(0.1)
+                        ? theme.colorScheme.accent
+                            .withAlpha((0.1 * 255).round())
                         : Colors.transparent,
-                borderRadius: BorderRadius.circular(6),
               ),
               child: Row(
                 children: [
@@ -183,7 +186,7 @@ class _ShadSidebarCollapsibleMenuItemState
                     SizedBox(
                       width: 16,
                       height: 16,
-                      child: widget.item.icon!,
+                      child: widget.item.icon,
                     ),
                     const SizedBox(width: 8),
                   ],
@@ -230,16 +233,13 @@ class _ShadSidebarCollapsibleMenuItemState
         // Collapsible sub-items with vertical line
         SizeTransition(
           sizeFactor: _sizeAnimation,
-          axisAlignment: -1.0, // Align to top for top-to-bottom animation
+          axisAlignment: -1, // Align to top for top-to-bottom animation
           child: Container(
             margin: const EdgeInsets.only(left: 12, top: 2),
             padding: const EdgeInsets.only(left: 8),
             decoration: BoxDecoration(
               border: Border(
-                left: BorderSide(
-                  color: theme.colorScheme.border,
-                  width: 1,
-                ),
+                left: BorderSide(color: theme.colorScheme.border),
               ),
             ),
             child: Column(

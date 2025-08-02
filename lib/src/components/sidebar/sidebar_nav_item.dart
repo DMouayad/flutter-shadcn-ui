@@ -2,7 +2,6 @@ import 'package:flutter/widgets.dart';
 
 /// Interface for navigation items in the sidebar.
 ///
-/// Represents a single navigation item that can be displayed in a [ShadSidebar].
 /// Can contain nested items for collapsible groups.
 class ShadSidebarNavItem {
   /// Creates a navigation item for the sidebar.

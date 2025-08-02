@@ -1,9 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
-/// Theme for [ShadSidebar] components.
 @immutable
 class ShadSidebarTheme {
   const ShadSidebarTheme({
@@ -123,7 +121,6 @@ class ShadSidebarTheme {
   }
 }
 
-/// Theme for [ShadSidebarGroup] components.
 @immutable
 class ShadSidebarGroupTheme {
   const ShadSidebarGroupTheme({
@@ -198,7 +195,6 @@ class ShadSidebarGroupTheme {
   }
 }
 
-/// Theme for [ShadSidebarMenuItem] components.
 @immutable
 class ShadSidebarMenuItemTheme {
   const ShadSidebarMenuItemTheme({

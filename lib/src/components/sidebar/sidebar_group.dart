@@ -127,10 +127,12 @@ class _ShadSidebarCollapsibleGroupState
     _rotationAnimation = Tween<double>(
       begin: 0,
       end: 0.5,
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
     _sizeAnimation = CurvedAnimation(
       parent: _animationController,
       curve: Curves.easeInOut,
@@ -180,7 +182,7 @@ class _ShadSidebarCollapsibleGroupState
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(6),
                   color: _isHovered
-                      ? theme.colorScheme.accent.withOpacity(0.1)
+                      ? theme.colorScheme.accent.withAlpha((0.1 * 255).round())
                       : Colors.transparent,
                 ),
                 child: Row(
@@ -219,7 +221,7 @@ class _ShadSidebarCollapsibleGroupState
         // Collapsible content with vertical line
         SizeTransition(
           sizeFactor: _sizeAnimation,
-          axisAlignment: -1.0, // Align to top for top-to-bottom animation
+          axisAlignment: -1, // Align to top for top-to-bottom animation
           child: Container(
             margin: const EdgeInsets.only(left: 12, top: 4),
             padding: const EdgeInsets.only(left: 8),
@@ -227,7 +229,6 @@ class _ShadSidebarCollapsibleGroupState
               border: Border(
                 left: BorderSide(
                   color: theme.colorScheme.border,
-                  width: 1,
                 ),
               ),
             ),

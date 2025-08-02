@@ -55,7 +55,7 @@ class _ShadSidebarFooterState extends State<ShadSidebarFooter> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(6),
             color: _isHovered && widget.onUserTap != null
-                ? theme.colorScheme.accent.withOpacity(0.1)
+                ? theme.colorScheme.accent.withAlpha((0.1 * 255).round())
                 : Colors.transparent,
           ),
           child: Row(
@@ -108,7 +108,7 @@ class _ShadSidebarFooterState extends State<ShadSidebarFooter> {
                 ),
               ),
               // Actions
-              if (widget.actions?.isNotEmpty == true) ...[
+              if (widget.actions?.isNotEmpty ?? false) ...[
                 const SizedBox(width: 8),
                 ...widget.actions!,
               ] else
