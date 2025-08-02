@@ -38,8 +38,8 @@ class _ShadSidebarMenuItemState extends State<ShadSidebarMenuItem> {
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
         decoration: BoxDecoration(
-          color: widget.item.isActive 
-              ? theme.colorScheme.accent 
+          color: widget.item.isActive
+              ? theme.colorScheme.accent
               : _isHovered
                   ? theme.colorScheme.accent.withValues(alpha: 0.1)
                   : Colors.transparent,

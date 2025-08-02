@@ -412,7 +412,8 @@ class ShadThemeData extends ShadBaseTheme {
       separatorTheme:
           ShadSeparatorTheme.lerp(a.separatorTheme, b.separatorTheme, t),
       sonnerTheme: ShadSonnerTheme.lerp(a.sonnerTheme, b.sonnerTheme, t),
-      textareaTheme: ShadTextareaTheme.lerp(a.textareaTheme, b.textareaTheme, t),
+      textareaTheme:
+          ShadTextareaTheme.lerp(a.textareaTheme, b.textareaTheme, t),
       sidebarTheme: ShadSidebarTheme.lerp(a.sidebarTheme, b.sidebarTheme, t),
     );
   }

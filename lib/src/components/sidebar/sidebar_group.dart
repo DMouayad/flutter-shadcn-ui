@@ -38,7 +38,7 @@ class ShadSidebarGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
-    
+
     final content = Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -103,10 +103,12 @@ class _ShadSidebarCollapsibleGroup extends StatefulWidget {
   final Widget content;
 
   @override
-  State<_ShadSidebarCollapsibleGroup> createState() => _ShadSidebarCollapsibleGroupState();
+  State<_ShadSidebarCollapsibleGroup> createState() =>
+      _ShadSidebarCollapsibleGroupState();
 }
 
-class _ShadSidebarCollapsibleGroupState extends State<_ShadSidebarCollapsibleGroup> 
+class _ShadSidebarCollapsibleGroupState
+    extends State<_ShadSidebarCollapsibleGroup>
     with SingleTickerProviderStateMixin {
   late bool _isExpanded;
   late AnimationController _animationController;
@@ -133,7 +135,7 @@ class _ShadSidebarCollapsibleGroupState extends State<_ShadSidebarCollapsibleGro
       parent: _animationController,
       curve: Curves.easeInOut,
     );
-    
+
     if (_isExpanded) {
       _animationController.value = 1.0;
     }
@@ -159,7 +161,7 @@ class _ShadSidebarCollapsibleGroupState extends State<_ShadSidebarCollapsibleGro
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
@@ -187,7 +189,8 @@ class _ShadSidebarCollapsibleGroupState extends State<_ShadSidebarCollapsibleGro
                       animation: _rotationAnimation,
                       builder: (context, child) {
                         return Transform.rotate(
-                          angle: _rotationAnimation.value * 3.14159, // 180 degrees
+                          angle:
+                              _rotationAnimation.value * 3.14159, // 180 degrees
                           child: Icon(
                             LucideIcons.chevronDown,
                             size: 12,
@@ -212,7 +215,7 @@ class _ShadSidebarCollapsibleGroupState extends State<_ShadSidebarCollapsibleGro
               ),
             ),
           ),
-          
+
         // Collapsible content with vertical line
         SizeTransition(
           sizeFactor: _sizeAnimation,

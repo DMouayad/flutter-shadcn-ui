@@ -254,9 +254,12 @@ class ShadSidebarMenuItemTheme {
       padding: EdgeInsetsGeometry.lerp(a?.padding, b?.padding, t),
       borderRadius: BorderRadius.lerp(a?.borderRadius, b?.borderRadius, t),
       textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
-      activeTextStyle: TextStyle.lerp(a?.activeTextStyle, b?.activeTextStyle, t),
-      activeBackgroundColor: Color.lerp(a?.activeBackgroundColor, b?.activeBackgroundColor, t),
-      hoverBackgroundColor: Color.lerp(a?.hoverBackgroundColor, b?.hoverBackgroundColor, t),
+      activeTextStyle:
+          TextStyle.lerp(a?.activeTextStyle, b?.activeTextStyle, t),
+      activeBackgroundColor:
+          Color.lerp(a?.activeBackgroundColor, b?.activeBackgroundColor, t),
+      hoverBackgroundColor:
+          Color.lerp(a?.hoverBackgroundColor, b?.hoverBackgroundColor, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
       chevronSize: lerpDouble(a?.chevronSize, b?.chevronSize, t),
       animationDuration: b?.animationDuration ?? a?.animationDuration,
@@ -297,7 +300,8 @@ class ShadSidebarMenuItemTheme {
       borderRadius: borderRadius ?? this.borderRadius,
       textStyle: textStyle ?? this.textStyle,
       activeTextStyle: activeTextStyle ?? this.activeTextStyle,
-      activeBackgroundColor: activeBackgroundColor ?? this.activeBackgroundColor,
+      activeBackgroundColor:
+          activeBackgroundColor ?? this.activeBackgroundColor,
       hoverBackgroundColor: hoverBackgroundColor ?? this.hoverBackgroundColor,
       iconSize: iconSize ?? this.iconSize,
       chevronSize: chevronSize ?? this.chevronSize,

@@ -66,7 +66,7 @@ void main() {
 
     testWidgets('respects width property', (WidgetTester tester) async {
       const testWidth = 350.0;
-      
+
       await tester.pumpAsyncWidget(
         createTestWidget(
           const ShadSidebar(
@@ -76,11 +76,13 @@ void main() {
         ),
       );
 
-      final sidebarWidget = tester.widget<ShadSidebar>(find.byType(ShadSidebar));
+      final sidebarWidget =
+          tester.widget<ShadSidebar>(find.byType(ShadSidebar));
       expect(sidebarWidget.width, testWidth);
     });
 
-    testWidgets('collapses when isCollapsed is true', (WidgetTester tester) async {
+    testWidgets('collapses when isCollapsed is true',
+        (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebar(
@@ -98,14 +100,15 @@ void main() {
 
       // When collapsed, the sidebar should show as SizedBox.shrink
       expect(find.byType(SizedBox), findsOneWidget);
-      
+
       // Content should not be visible when collapsed
       expect(find.text('Dashboard'), findsNothing);
     });
 
-    testWidgets('calls onCollapsedChanged when state changes', (WidgetTester tester) async {
+    testWidgets('calls onCollapsedChanged when state changes',
+        (WidgetTester tester) async {
       bool? collapsedState;
-      
+
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebar(
@@ -115,13 +118,16 @@ void main() {
         ),
       );
 
-      final sidebarWidget = tester.widget<ShadSidebar>(find.byType(ShadSidebar));
+      final sidebarWidget =
+          tester.widget<ShadSidebar>(find.byType(ShadSidebar));
       expect(sidebarWidget.onCollapsedChanged, isNotNull);
       // Note: collapsedState would be updated by the callback when triggered
-      expect(collapsedState, isNull); // Initially null since callback hasn't been called
+      expect(collapsedState,
+          isNull); // Initially null since callback hasn't been called
     });
 
-    testWidgets('renders multiple navigation groups', (WidgetTester tester) async {
+    testWidgets('renders multiple navigation groups',
+        (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebar(
@@ -199,12 +205,13 @@ void main() {
 
       expect(find.text('Collapsible'), findsOneWidget);
       expect(find.text('Item 1'), findsOneWidget);
-      
+
       // Should find chevron icon for collapsible groups
       expect(find.byType(Icon), findsAtLeastNWidgets(1));
     });
 
-    testWidgets('toggles collapsible group on tap', (WidgetTester tester) async {
+    testWidgets('toggles collapsible group on tap',
+        (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebarGroup(
@@ -261,7 +268,7 @@ void main() {
 
     testWidgets('executes onTap callback', (WidgetTester tester) async {
       bool tapped = false;
-      
+
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebarMenuItem(
@@ -279,7 +286,8 @@ void main() {
       expect(tapped, true);
     });
 
-    testWidgets('renders nested items with chevron', (WidgetTester tester) async {
+    testWidgets('renders nested items with chevron',
+        (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
           const ShadSidebarMenuItem(
@@ -312,8 +320,9 @@ void main() {
       );
 
       expect(find.text('Dashboard'), findsOneWidget);
-      
-      final menuItem = tester.widget<ShadSidebarMenuItem>(find.byType(ShadSidebarMenuItem));
+
+      final menuItem =
+          tester.widget<ShadSidebarMenuItem>(find.byType(ShadSidebarMenuItem));
       expect(menuItem.item.isActive, true);
     });
   });
@@ -329,7 +338,8 @@ void main() {
       expect(find.text('My Application'), findsOneWidget);
     });
 
-    testWidgets('renders header with logo and subtitle', (WidgetTester tester) async {
+    testWidgets('renders header with logo and subtitle',
+        (WidgetTester tester) async {
       await tester.pumpAsyncWidget(
         createTestWidget(
           const ShadSidebarHeader(
@@ -347,7 +357,7 @@ void main() {
 
     testWidgets('executes onTap callback', (WidgetTester tester) async {
       bool tapped = false;
-      
+
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebarHeader(
@@ -419,7 +429,7 @@ void main() {
 
     testWidgets('executes onUserTap callback', (WidgetTester tester) async {
       bool tapped = false;
-      
+
       await tester.pumpAsyncWidget(
         createTestWidget(
           ShadSidebarFooter(
@@ -442,7 +452,7 @@ void main() {
   group('ShadSidebarNavItem', () {
     test('creates nav item with required fields', () {
       const navItem = ShadSidebarNavItem(title: 'Dashboard');
-      
+
       expect(navItem.title, 'Dashboard');
       expect(navItem.url, null);
       expect(navItem.icon, null);
@@ -454,7 +464,7 @@ void main() {
     test('creates nav item with all fields', () {
       final icon = const Icon(Icons.dashboard);
       void onTap() {}
-      
+
       final navItem = ShadSidebarNavItem(
         title: 'Dashboard',
         url: '/dashboard',
@@ -465,7 +475,7 @@ void main() {
         ],
         onTap: onTap,
       );
-      
+
       expect(navItem.title, 'Dashboard');
       expect(navItem.url, '/dashboard');
       expect(navItem.icon, icon);
@@ -482,7 +492,7 @@ void main() {
         name: 'John Doe',
         email: 'john@example.com',
       );
-      
+
       expect(user.name, 'John Doe');
       expect(user.email, 'john@example.com');
       expect(user.avatar, null);
@@ -494,7 +504,7 @@ void main() {
         email: 'john@example.com',
         avatar: 'https://example.com/avatar.jpg',
       );
-      
+
       expect(user.name, 'John Doe');
       expect(user.email, 'john@example.com');
       expect(user.avatar, 'https://example.com/avatar.jpg');

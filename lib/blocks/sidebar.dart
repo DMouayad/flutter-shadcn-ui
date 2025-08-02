@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shadcn_ui/src/theme/theme.dart';
+import 'package:shadcn_ui/shadcn_ui.dart';
 
 /// A composable sidebar component inspired by shadcn/ui.
 ///
@@ -68,55 +68,55 @@ class ShadSidebar extends StatefulWidget {
   });
 
   /// Optional header widget displayed at the top of the sidebar.
-  /// 
+  ///
   /// Typically a [ShadSidebarHeader] with app logo and title,
   /// but can be any widget for custom header content.
   final Widget? header;
 
   /// Optional footer widget displayed at the bottom of the sidebar.
-  /// 
+  ///
   /// Typically a [ShadSidebarFooter] with user information,
   /// but can be any widget for custom footer content.
   final Widget? footer;
 
   /// List of navigation groups to display in the sidebar content.
-  /// 
+  ///
   /// Each group is typically a [ShadSidebarGroup] containing
   /// related navigation items with optional grouping labels.
   final List<Widget> navGroups;
 
   /// Width of the sidebar when expanded.
-  /// 
+  ///
   /// Defaults to 280 pixels. When collapsed, the sidebar
   /// animates to zero width and becomes completely hidden.
   final double width;
 
   /// Whether the sidebar is currently collapsed.
-  /// 
+  ///
   /// When true, the sidebar animates to zero width and content
   /// becomes hidden. When false, the sidebar expands to [width].
   final bool isCollapsed;
 
   /// Callback invoked when the collapsed state should change.
-  /// 
+  ///
   /// Provides the new collapsed state as a boolean value.
   /// Use this to update the parent widget's state.
   final ValueChanged<bool>? onCollapsedChanged;
 
   /// Background color override for the sidebar.
-  /// 
+  ///
   /// If not provided, uses [ShadTheme.colorScheme.card] for
   /// consistent theming with the design system.
   final Color? backgroundColor;
 
   /// Border color override for the sidebar.
-  /// 
+  ///
   /// If not provided, uses [ShadTheme.colorScheme.border] for
   /// consistent theming with the design system.
   final Color? borderColor;
 
   /// Padding override for sidebar content areas.
-  /// 
+  ///
   /// If not provided, uses symmetric padding of 12 horizontal
   /// and 8 vertical pixels for consistent spacing.
   final EdgeInsetsGeometry? padding;
@@ -162,10 +162,12 @@ class _ShadSidebarState extends State<ShadSidebar>
     _widthAnimation = Tween<double>(
       begin: widget.width,
       end: 0, // Completely hidden when collapsed
-    ).animate(CurvedAnimation(
-      parent: _animationController,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
   }
 
   @override
@@ -177,10 +179,9 @@ class _ShadSidebarState extends State<ShadSidebar>
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
-    final effectiveBackgroundColor = widget.backgroundColor ??
-        theme.colorScheme.card;
-    final effectiveBorderColor = widget.borderColor ??
-        theme.colorScheme.border;
+    final effectiveBackgroundColor =
+        widget.backgroundColor ?? theme.colorScheme.card;
+    final effectiveBorderColor = widget.borderColor ?? theme.colorScheme.border;
 
     return AnimatedBuilder(
       animation: _widthAnimation,
@@ -212,25 +213,34 @@ class _ShadSidebarState extends State<ShadSidebar>
                     if (widget.header != null)
                       Container(
                         width: double.infinity,
-                        padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: widget.padding ??
+                            const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
                         decoration: BoxDecoration(
                           border: Border(
                             bottom: BorderSide(
                               color: effectiveBorderColor,
-                              width: 1,
                             ),
                           ),
                         ),
-                        child: widget.header!,
+                        child: widget.header,
                       ),
                     // Content
                     Expanded(
                       child: SingleChildScrollView(
-                        padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: widget.padding ??
+                            const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            for (int i = 0; i < widget.navGroups.length; i++) ...[
+                            for (int i = 0;
+                                i < widget.navGroups.length;
+                                i++) ...[
                               widget.navGroups[i],
                               if (i < widget.navGroups.length - 1)
                                 const SizedBox(height: 16),
@@ -243,7 +253,11 @@ class _ShadSidebarState extends State<ShadSidebar>
                     if (widget.footer != null)
                       Container(
                         width: double.infinity,
-                        padding: widget.padding ?? const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                        padding: widget.padding ??
+                            const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
                         decoration: BoxDecoration(
                           border: Border(
                             top: BorderSide(

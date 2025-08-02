@@ -44,7 +44,9 @@ class _ShadSidebarHeaderState extends State<ShadSidebarHeader> {
     final theme = ShadTheme.of(context);
 
     return MouseRegion(
-      cursor: widget.onTap != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+      cursor: widget.onTap != null
+          ? SystemMouseCursors.click
+          : SystemMouseCursors.basic,
       onEnter: (_) => setState(() => _isHovered = true),
       onExit: (_) => setState(() => _isHovered = false),
       child: GestureDetector(

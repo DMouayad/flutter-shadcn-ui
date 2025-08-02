@@ -71,65 +71,65 @@ class ShadSidebar extends StatefulWidget {
   });
 
   /// Optional header widget displayed at the top of the sidebar.
-  /// 
+  ///
   /// Typically a [ShadSidebarHeader] with app logo and title,
   /// but can be any widget for custom header content.
   final Widget? header;
 
   /// Optional footer widget displayed at the bottom of the sidebar.
-  /// 
+  ///
   /// Typically a [ShadSidebarFooter] with user information,
   /// but can be any widget for custom footer content.
   final Widget? footer;
 
   /// List of navigation groups to display in the sidebar content.
-  /// 
+  ///
   /// Each group is typically a [ShadSidebarGroup] containing
   /// related navigation items with optional grouping labels.
   final List<Widget> navGroups;
 
   /// Width of the sidebar when expanded.
-  /// 
+  ///
   /// If not provided, uses the theme's default width.
   /// When collapsed, the sidebar animates to zero width and becomes completely hidden.
   final double? width;
 
   /// Whether the sidebar is currently collapsed.
-  /// 
+  ///
   /// When true, the sidebar animates to zero width and content
   /// becomes hidden. When false, the sidebar expands to [width].
   final bool isCollapsed;
 
   /// Callback invoked when the collapsed state should change.
-  /// 
+  ///
   /// Provides the new collapsed state as a boolean value.
   /// Use this to update the parent widget's state.
   final ValueChanged<bool>? onCollapsedChanged;
 
   /// Background color override for the sidebar.
-  /// 
+  ///
   /// If not provided, uses the theme's background color for
   /// consistent theming with the design system.
   final Color? backgroundColor;
 
   /// Border color override for the sidebar.
-  /// 
+  ///
   /// If not provided, uses the theme's border color for
   /// consistent theming with the design system.
   final Color? borderColor;
 
   /// Padding override for sidebar content areas.
-  /// 
+  ///
   /// If not provided, uses the theme's padding for consistent spacing.
   final EdgeInsetsGeometry? padding;
 
   /// Duration override for sidebar animations.
-  /// 
+  ///
   /// If not provided, uses the theme's animation duration.
   final Duration? animationDuration;
 
   /// Animation curve override for sidebar animations.
-  /// 
+  ///
   /// If not provided, uses the theme's animation curve.
   final Curve? animationCurve;
 
@@ -180,24 +180,22 @@ class _ShadSidebarState extends State<ShadSidebar>
   void _updateAnimation() {
     final theme = ShadTheme.of(context);
     final sidebarTheme = theme.sidebarTheme;
-    
-    final effectiveWidth = widget.width ?? 
-        sidebarTheme.width ?? 
-        280.0;
-    
-    final effectiveCurve = widget.animationCurve ?? 
-        sidebarTheme.animationCurve ?? 
+
+    final effectiveWidth = widget.width ?? sidebarTheme.width ?? 280.0;
+
+    final effectiveCurve = widget.animationCurve ??
+        sidebarTheme.animationCurve ??
         Curves.easeInOut;
-    
-    final effectiveDuration = widget.animationDuration ?? 
-        sidebarTheme.animationDuration ?? 
+
+    final effectiveDuration = widget.animationDuration ??
+        sidebarTheme.animationDuration ??
         const Duration(milliseconds: 200);
-    
+
     // Update controller duration if needed
     if (_animationController.duration != effectiveDuration) {
       _animationController.duration = effectiveDuration;
     }
-    
+
     _widthAnimation = Tween<double>(
       begin: effectiveWidth,
       end: 0, // Completely hidden when collapsed
@@ -222,11 +220,11 @@ class _ShadSidebarState extends State<ShadSidebar>
     final effectiveBackgroundColor = widget.backgroundColor ??
         sidebarTheme.backgroundColor ??
         theme.colorScheme.card;
-    
+
     final effectiveBorderColor = widget.borderColor ??
         sidebarTheme.borderColor ??
         theme.colorScheme.border;
-    
+
     final effectivePadding = widget.padding ??
         sidebarTheme.padding ??
         const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
@@ -279,10 +277,13 @@ class _ShadSidebarState extends State<ShadSidebar>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            for (int i = 0; i < widget.navGroups.length; i++) ...[
+                            for (int i = 0;
+                                i < widget.navGroups.length;
+                                i++) ...[
                               widget.navGroups[i],
                               if (i < widget.navGroups.length - 1)
-                                SizedBox(height: sidebarTheme.groupSpacing ?? 16),
+                                SizedBox(
+                                    height: sidebarTheme.groupSpacing ?? 16),
                             ],
                           ],
                         ),

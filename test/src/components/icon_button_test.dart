@@ -99,6 +99,6 @@ void main() {
 
       final iconSize = tester.getSize(find.byType(Icon));
       expect(iconSize, const Size.square(customIconSize));
-    });    
+    });
   });
 }
